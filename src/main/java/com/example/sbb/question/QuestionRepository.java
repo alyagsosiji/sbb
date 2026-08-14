@@ -1,6 +1,7 @@
-package com.example.sbb;
+package com.example.sbb.question;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
+//    List<Question> findAll();
 }

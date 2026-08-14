@@ -1,10 +1,15 @@
 package com.example.sbb;
 
+import com.example.sbb.question.Question;
+import com.example.sbb.question.QuestionRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class SbbApplicationTests {
@@ -28,6 +33,15 @@ class SbbApplicationTests {
         q2.setContent("id는 자동으로 생성되나요?");
         q2.setCreateDate(LocalDateTime.now()); // static 메서드 호출 --> class명.메서드명
         this.questionRepository.save(q2);
+    }
+
+    @Test
+    void testJpa_02() {
+        List<Question> all = this.questionRepository.findAll();  // question table의 record 전체를 List 타입, all 저장
+        assertEquals(4, all.size());  // assertEquals(기대값, 실제값 즉 db의 값)
+
+        Question q = all.get(0);
+        assertEquals("sbb가 무엇인가요?", q.getSubject());
 
     }
 
